@@ -24,6 +24,14 @@ const Page = db.define('page', {
   },
 });
 
+Page.beforeCreate((pageInstance, optionsObj) => {
+  const postTitle = pageInstance.title;
+  const slugGenerator = (title) => {
+    return title.replace(/\s+/g, '_').replace(/\W/g, '');
+  }
+  pageInstance.slug = slugGenerator(postTitle);
+})
+
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
@@ -37,5 +45,7 @@ const User = db.define('user', {
     },
   },
 });
+
+
 
 module.exports = { db, Page, User };

@@ -4,8 +4,12 @@ const morgan = require('morgan');
 const models = require('./models');
 const wikiRouter = require('./routes/wiki');
 const userRouter = require('./routes/user');
+const bodyParser = require('body-parser')
 
 const path = require('path');
+
+app.use(bodyParser.urlencoded());
+// app.use(express.urlencoded({extended: false}))
 
 app.use(morgan('dev'));
 
