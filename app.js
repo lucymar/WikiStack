@@ -15,9 +15,8 @@ const layout = require('./views/layout.js');
 
 app.use('/wiki', wikiRouter);
 
-app.get('/', (req, res) => {
-  console.log('this is ' + db);
-  res.send(layout(''));
+app.get('/', (req, res, next) => {
+  res.redirect('/wiki');
 });
 
 models.db.authenticate().then(() => {
